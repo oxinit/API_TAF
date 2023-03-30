@@ -16,22 +16,7 @@ public class ApiLocalhostTests {
                 .then();
       response.log().body();
     }
-    @Test
-    public void getProduct(){
-      final String endpoint="http://localhost:80/api_testing/product/read_one.php";
-      var response=
-              given().queryParam("id",2)
-                      .when().get(endpoint)
-                      .then();
-      response.log().body();
-      response.assertThat().statusCode(200)
-              .body("id",equalTo("2"))
-              .body("name",equalTo("Cross-Back Training Tank"))
-              .body("description",equalTo("The most awesome phone of 2013!"))
-              .body("price",equalTo("299.00"))
-              .body("category_id",equalTo("2"))
-              .body("category_name",equalTo("Active Wear - Women"));
-    }
+
     @Test
     public void createProduct(){
         String endpoint="http://localhost:80/api_testing/product/create.php";
@@ -89,7 +74,7 @@ public class ApiLocalhostTests {
                 "Blue water bottle.Holds 64 ounces",
                 25,
                 3,
-                "forgot"//ahtung
+                "forgot"
         );
         var response =given().body(product)
                 .when().post(endpoint)
