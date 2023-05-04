@@ -21,7 +21,7 @@ public class ApiLocalHostTestsAdvanced extends CrudApi {
     Product wrongProduct = new Product(//negative testing sample
             2,
             "Cross-Back Training Tank3",
-            "Thef most awesome phone of 2013!",
+            "Thef most awesome phon3e of 2013!",
             2995.00,
             32,
             "Activae Wear - Women");
