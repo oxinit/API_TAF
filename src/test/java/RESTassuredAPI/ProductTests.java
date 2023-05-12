@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class ProductTests extends CrudApi {
 
-
     @Test
     public void StreamPrepareCode() {
         var response = theGetApiCall();
