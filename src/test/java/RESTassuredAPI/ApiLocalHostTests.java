@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 import static org.hamcrest.Matchers.*;
 
 
-public class ApiLocalHostTestsAdvanced extends CrudApi {
+public class ApiLocalHostTests extends CrudApi {
     Product expectedProduct = new Product(//valid existing database entry
             2,
             "Cross-Back Training Tank",

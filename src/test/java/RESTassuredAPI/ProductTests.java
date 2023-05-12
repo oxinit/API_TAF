@@ -34,9 +34,9 @@ public class ProductTests extends CrudApi {
         Products products = response.as(Products.class);
         Product product = products.getRecords()
                 .stream()
-                .filter(x -> Objects.equals(x.getCategoryName(), "Active Wear - Women")
+                .filter(x -> x.getCategoryName().equals("Active Wear - Women")
                         &&
-                        Objects.equals(x.getName(), "Stretchy Dance Pants"))
+                        x.getName().equals("Stretchy Dance Pants"))
                 .findAny().get();
         Assert.assertTrue(product.getCategoryName().equals("Active Wear - Women")
                         && product.getName().equals("Stretchy Dance Pants"),
@@ -53,7 +53,8 @@ public class ProductTests extends CrudApi {
                 .stream()
                 .filter(x -> x.getId() == 3)
                 .findAny().get();
-        Assert.assertEquals(product.getPrice(), 68.0, "Product price does`nt match. Product price are: " + product.getPrice());
+        Assert.assertEquals(product.getPrice(), 68.0,
+                "Product price does`nt match. Product price are: " + product.getPrice());
     }
 
     @Test
