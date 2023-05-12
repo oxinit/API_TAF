@@ -42,7 +42,7 @@ public class ApiLocalHostTestsAdvanced extends CrudApi {
         var response = theGetApiCall();
         response.then().log().headers();
 
-        Products products = new Products(response.as(Products.class).getRecords());
+        Products products = response.as(Products.class);
 
         response.then().assertThat().statusCode(200)
                 .header("Content-Type", equalTo("application/json; charset=UTF-8"));
