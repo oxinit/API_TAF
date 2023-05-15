@@ -41,15 +41,15 @@ public class ApiLocalHostTests extends CrudApi {
     public void getProducts() {
         var response = theGetApiCall();
         response.then().log().headers();
-
         Products products = response.as(Products.class);
 
         response.then().assertThat().statusCode(200)
                 .header("Content-Type", equalTo("application/json; charset=UTF-8"));
+        int productsSize = products.getRecords().size();
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(products.getRecords().size() > 0, "array of products size lesser then 0");
+        softAssert.assertTrue(productsSize > 0, "array of products empty");
         softAssert.assertFalse(products.getRecords().isEmpty(), "array of products empty");
-        softAssert.assertEquals(products.getRecords().get(products.getRecords().size() - 2)
+        softAssert.assertEquals(products.getRecords().get(productsSize - 2)
                 , expectedProduct, "not expected object");
         softAssert.assertAll();
     }

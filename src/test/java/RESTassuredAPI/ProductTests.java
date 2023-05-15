@@ -10,8 +10,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ProductTests extends CrudApi {
-
-
     @Test
     public void StreamPrepareCode() {
         var response = theGetApiCall();
@@ -26,20 +24,24 @@ public class ProductTests extends CrudApi {
                 .collect(Collectors.toMap(Product::getId,
                         Product::getName));
         System.out.println(employeesMap);
+
+        response.then().statusCode(200);
     }
 
     @Test
     public void ProductSpecificCategoryTest() {
+        String categoryName = "Active Wear - Women";
+        String productName = "Stretchy Dance Pants";
         var response = theGetApiCall();
         Products products = response.as(Products.class);
         Product product = products.getRecords()
                 .stream()
-                .filter(x -> x.getCategoryName().equals("Active Wear - Women")
+                .filter(x -> x.getCategoryName().equals(categoryName)
                         &&
-                        x.getName().equals("Stretchy Dance Pants"))
+                        x.getName().equals(productName))
                 .findAny().get();
-        Assert.assertTrue(product.getCategoryName().equals("Active Wear - Women")
-                        && product.getName().equals("Stretchy Dance Pants"),
+        Assert.assertTrue(product.getCategoryName().equals(categoryName)
+                        && product.getName().equals(productName),
                 "Product does`nt match. Product name are: " + product.getName()
                         + "category name :" + product.getCategoryName()
         );
@@ -47,25 +49,29 @@ public class ProductTests extends CrudApi {
 
     @Test
     public void PriceCheckForProductWithId3() {
+        int productID = 3;
+        double expectedPrice = 68.0;
         var response = theGetApiCall();
         Products products = response.as(Products.class);
         Product product = products.getRecords()
                 .stream()
-                .filter(x -> x.getId() == 3)
+                .filter(x -> x.getId() == productID)
                 .findAny().get();
-        Assert.assertEquals(product.getPrice(), 68.0,
+        Assert.assertEquals(product.getPrice(), expectedPrice,
                 "Product price does`nt match. Product price are: " + product.getPrice());
     }
 
     @Test
     public void PriceCheckForProductWithId1() {
+        int productID = 1;
+        double productPrice = 90.0;
         var response = theGetApiCall();
         Products products = response.as(Products.class);
         Product product = products.getRecords()
                 .stream()
-                .filter(x -> x.getId() == 1)
+                .filter(x -> x.getId() == productID)
                 .findAny().get();
-        Assert.assertTrue(product.getPrice() > 90.0,
+        Assert.assertTrue(product.getPrice() > productPrice,
                 "Product price less then 90.0. Product price are: " + product.getPrice());
     }
 }

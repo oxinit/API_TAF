@@ -15,14 +15,6 @@ public class CrudApi {
         RestAssured.baseURI = "http://localhost:80/api_testing/product/";
     }
 
-    @AfterMethod
-    public void getTestExecutionTime(ITestResult result) {
-        String methodName = result.getMethod()
-                .getMethodName();
-        long totalExecutionTime = (result.getEndMillis() - result.getStartMillis());
-        System.out.println(
-                "Total Execution time: " + totalExecutionTime + " milliseconds" + " for method " + methodName);
-    }
 
     public Response theGetApiCall(int productID) {
         final String endpoint = "read_one.php";
