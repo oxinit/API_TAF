@@ -58,7 +58,7 @@ public class ProductTests extends CrudApi {
                 .filter(x -> x.getId() == productID)
                 .findAny().get();
         Assert.assertEquals(product.getPrice(), expectedPrice,
-                "Product price does`nt match. Product price are: " + product.getPrice());
+                "Product price does not match. Product price are: " + product.getPrice());
     }
 
     @Test

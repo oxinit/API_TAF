@@ -1,6 +1,8 @@
 package RESTassuredAPI;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import models.Product;
 import models.Products;
 import org.testng.Assert;
@@ -11,7 +13,7 @@ import static org.hamcrest.Matchers.*;
 
 
 public class ApiLocalHostTests extends CrudApi {
-    Product expectedProduct = new Product(//valid existing database entry
+    Product expectedProduct = new Product(//valid existing database record
             2,
             "Cross-Back Training Tank",
             "The most awesome phone of 2013!",
@@ -48,7 +50,6 @@ public class ApiLocalHostTests extends CrudApi {
         int productsSize = products.getRecords().size();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(productsSize > 0, "array of products empty");
-        softAssert.assertFalse(products.getRecords().isEmpty(), "array of products empty");
         softAssert.assertEquals(products.getRecords().get(productsSize - 2)
                 , expectedProduct, "not expected object");
         softAssert.assertAll();
@@ -56,7 +57,7 @@ public class ApiLocalHostTests extends CrudApi {
 
     @Test
     public void createProduct() {
-        //BD gives id automatically , so we use this kind of obj construct
+        //BD gives id automatically , so we use this constructor
         Product product = Product.builder()
                 .name("Water Bottle")
                 .description("Blue water bottle.Holds 64 ounces")

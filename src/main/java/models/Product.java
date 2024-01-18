@@ -5,9 +5,8 @@ import lombok.*;
 
 @Builder
 @Data
-@RequiredArgsConstructor
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
 public class Product {
     private int id;
     private String name;
@@ -17,5 +16,4 @@ public class Product {
     private  int categoryId;
     @JsonProperty(value = "category_name")
     private String categoryName;
-
 }
